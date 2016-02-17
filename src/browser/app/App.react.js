@@ -1,6 +1,5 @@
 import './App.scss';
 import Component from 'react-pure-render/component';
-import Footer from './Footer.react';
 import Header from './Header.react';
 import Helmet from 'react-helmet';
 import React, {PropTypes} from 'react';
@@ -33,7 +32,6 @@ export default class App extends Component {
           pathname={location.pathname}
         />
         {children}
-        <Footer />
       </div>
     );
   }

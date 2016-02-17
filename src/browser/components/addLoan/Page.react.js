@@ -2,8 +2,10 @@ import Component from 'react-pure-render/component';
 import Helmet from 'react-helmet';
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
+import './addLoan.scss';
+import LoanForm from './LoanForm.react';
 
-class Settings extends Component {
+class Page extends Component {
 
   static propTypes = {
     msg: PropTypes.object
@@ -13,17 +15,16 @@ class Settings extends Component {
     const {msg} = this.props;
 
     return (
-      <div className="settings-page">
+      <div className="take-loan-page">
         <Helmet title={msg.title} />
-        <p>
-          {msg.title}
-        </p>
+
+        <LoanForm />
       </div>
     );
   }
-
 }
 
+
 export default connect(state => ({
-  msg: state.intl.msg.settings
-}))(Settings);
+  msg: state.intl.msg.todos
+}))(Page);

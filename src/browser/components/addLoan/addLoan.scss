@@ -1,0 +1,19 @@
+.take-loan-page {
+  width: 600px;
+
+  .new-loan {
+    clear: both;
+    height: 150px;
+  }
+
+  label {
+    float: left;
+    clear: left;
+  }
+
+  input {
+    float: right;
+    width: 170px;
+    clear: right;
+  }
+}

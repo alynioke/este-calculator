@@ -1,8 +1,8 @@
 import './NewTodo.scss';
-import * as todosActions from '../../common/todos/actions';
+import * as todosActions from '../../../common/todos/actions';
 import Component from 'react-pure-render/component';
 import React, {PropTypes} from 'react';
-import fields from '../../common/components/fields';
+import fields from '../../../common/components/fields';
 import {connect} from 'react-redux';
 
 class NewTodo extends Component {

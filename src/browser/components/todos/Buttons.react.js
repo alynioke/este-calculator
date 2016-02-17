@@ -1,5 +1,5 @@
 import './Buttons.scss';
-import * as todosActions from '../../common/todos/actions';
+import * as todosActions from '../../../common/todos/actions';
 import Component from 'react-pure-render/component';
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
