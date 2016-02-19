@@ -3,9 +3,10 @@ import {Record} from 'immutable';
 const Loan = Record({
   amount: null,
   days: null,
-  name: null,
+  interest: null,
   iban: null,
-  date: null
+  date: null,
+  returnAmount: null
 });
 
 export default Loan;

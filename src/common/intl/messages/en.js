@@ -9,11 +9,12 @@ export default {
   addLoan: {
     amount: 'Loan amount (EUR, maximum - 500)',
     days: 'Loan period (days, maximum - 60)',
-    name: 'Full name',
+    interest: 'Interest',
     iban: 'IBAN',
     phone: 'Phone',
     apply: 'Apply',
-    returnAmount: 'You need to return '
+    returnAmount: 'You need to return ',
+    inTotal: 'IN TOTAL'
   },
   home: {
     // // TODO: Android text.

@@ -1,8 +1,7 @@
-export const LOAN_INTEREST = 0.02;
+export function calculateReturnAmount(amount, days, interest) {
+  // const {amount, days, interest} = params;
+  const amountInt = amount ? parseInt(amount, 10) : 0;
+  const daysInt = days ? parseInt(days, 10) : 0;
 
-export function calculateReturnAmount(amount, days) {
-  const amountInt = parseInt(amount, 10);
-  const daysInt = parseInt(days, 10);
-
-  return amountInt + amountInt * LOAN_INTEREST * daysInt;
+  return amountInt + amountInt * interest / 100 * daysInt;
 }
