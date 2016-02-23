@@ -1,6 +1,6 @@
 import Component from 'react-pure-render/component';
 import React, {PropTypes} from 'react';
-import {Link} from 'react-router';
+import {Link, IndexLink} from 'react-router';
 import {connect} from 'react-redux';
 
 class Header extends Component {
@@ -17,7 +17,7 @@ class Header extends Component {
     return (
       <header>
         <ul>
-          <li><Link activeClassName="active" to="/">{msg.addLoan}</Link></li>
+          <li><IndexLink activeClassName="active" to="/">{msg.addLoan}</IndexLink></li>
           <li><Link activeClassName="active" to="/view-loans">{msg.viewLoans}</Link></li>
         </ul>
       </header>

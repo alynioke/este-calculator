@@ -33,7 +33,7 @@ export default function loansReducer(state = initialState, action) {
     }
 
     case actions.CALCULATE_ADD_LOAN: {
-      const {now, getUid} = action.payload;
+      const {now} = action.payload;
       /* I just wanted to use something from the middleware, hence 'now' function */
       /* It's not really needed here */
 
@@ -42,7 +42,6 @@ export default function loansReducer(state = initialState, action) {
           state
             .get('currentLoan')
             .set('date', new Date(now())))
-            .set('id', getUid())
         )
         .set('currentLoan', new Loan);
     }
@@ -52,8 +51,6 @@ export default function loansReducer(state = initialState, action) {
 
       return state
         .update('loans', loans => loans.update(id, function(loan) {
-          //if I take 100 for 1 day withh 100%, it's 200. If I extend, 100% * 2 -> 200%
-          //and now i need to pay for 8 days, which is 200% per day = 200*8 + 100 in total.
           const newInterest = loan.get('interest') * 2,
             newDate = new Date(loan.get('date').setDate(loan.get('date').getDate() + 7)),
             newReturnAmount = calculateReturnAmount(loan.get('amount'), 8, newInterest),
@@ -67,8 +64,15 @@ export default function loansReducer(state = initialState, action) {
         }));
     }
 
-    //@todo: several reducers 
-    //calculate totals
+    case actions.CALCULATE_DELETE_LOAN: {
+      const {id} = action.payload;
+
+      return state
+        .update('loans', loans => state
+            .get('loans')
+            .delete(id));
+    }
+
   }
 
   return state;

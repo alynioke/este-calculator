@@ -13,6 +13,7 @@ class Page extends Component {
     msg: React.PropTypes.object,
     loans: React.PropTypes.object,
     calculateExtendLoan: React.PropTypes.func,
+    calculateDeleteLoan: React.PropTypes.func,
     inTotal: React.PropTypes.string
   };
 
@@ -21,17 +22,16 @@ class Page extends Component {
 
     return (
       <div className="todos-page">
-        <Helmet title={msg.title} />
+        <Helmet title={msg.title}/>
 
         <LoansList {...this.props} />
       </div>
     );
   }
-
 }
 
 export default connect(state => ({
   msg: state.intl.msg.todos,
-  loans: state.loans.loans,
-  inTotal: state.intl.msg.inTotal
+  inTotal: state.intl.msg.addLoan.inTotal,
+  loans: state.loans.loans
 }), loanActions)(Page);

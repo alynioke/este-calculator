@@ -14,7 +14,6 @@ class LoanInputs extends Component {
   constructor(props) {
     super(props);
     this.calculateSetValue = this.calculateSetValue.bind(this);
-    this.calculateAddLoan = this.calculateAddLoan.bind(this);
   }
 
   calculateSetValue(e) {
@@ -22,12 +21,6 @@ class LoanInputs extends Component {
     const {name, value} = e.target;
 
     calculateSetValue(name, value);
-  }
-
-  calculateAddLoan() {
-    const {calculateAddLoan} = this.props;
-
-    calculateAddLoan();
   }
 
   render() {
@@ -84,10 +77,10 @@ class LoanInputs extends Component {
         </div>
 
         <div>
-            {msgAddLoan.returnAmount} {returnAmount} EUR
+          {msgAddLoan.returnAmount} {returnAmount} EUR
         </div>
 
-        <button onClick={this.calculateAddLoan}>{msgAddLoan.apply}</button>
+        <button onClick={this.props.calculateAddLoan}>{msgAddLoan.apply}</button>
 
       </div>
     );

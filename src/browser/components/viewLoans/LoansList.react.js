@@ -9,19 +9,26 @@ class LoansList extends Component {
     msg: PropTypes.object,
     loans: PropTypes.object,
     calculateExtendLoan: PropTypes.func,
+    calculateDeleteLoan: React.PropTypes.func,
     inTotal: PropTypes.string
   };
 
+  getAmount(loans, fieldToReduce) {
+    const amount = loans.size > 1
+      ? loans.reduce(function(prev, next) {
+        var prev = typeof prev === 'number' ? prev : prev.get(fieldToReduce),
+          next = typeof next === 'number' ? next : next.get(fieldToReduce);
+        return parseFloat(prev) + parseFloat(next);
+      })
+      : loans.first().get(fieldToReduce);
+
+    return parseFloat(amount).toFixed(2);
+  }
+
   render() {
-    const {loans, calculateExtendLoan, inTotal} = this.props;
-    const loansLi = loans.size
-      ? loans.map((loan, id) => <Loan
-          loan={loan}
-          id={id}
-          calculateExtendLoan={calculateExtendLoan}
-        />)
-      : '';
-    const totalAmount = 1, totalReturnAmount = 2;
+    const {loans, calculateExtendLoan, inTotal, calculateDeleteLoan} = this.props;
+    const totalAmount = this.getAmount(loans, 'amount'),
+      totalReturnAmount = this.getAmount(loans, 'returnAmount');
 
     return (
         <table className="loansList">
@@ -29,20 +36,30 @@ class LoansList extends Component {
             <tr>
               <th>Date</th>
               <th>Amount</th>
-              <th>Interest</th>
-              <th>IBAN #</th>
               <th>Amount to return</th>
               <th>+1 week</th>
+              <th>View loan info</th>
+              <th>Delete</th>
             </tr>
           </thead>
           <tbody>
-            {loansLi}
+            { loans.size ?
+                loans.map((loan, id) =>
+                  <Loan
+                    loan={loan}
+                    id={id}
+                    key={id}
+                    calculateExtendLoan={calculateExtendLoan}
+                    calculateDeleteLoan={calculateDeleteLoan}
+                  />)
+              : null
+            }
             <tr>
                 <td>{inTotal}</td>
                 <td>{totalAmount}EUR</td>
-                <td></td>
-                <td></td>
                 <td>{totalReturnAmount}EUR</td>
+                <td></td>
+                <td></td>
                 <td></td>
             </tr>
           </tbody>
