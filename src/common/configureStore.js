@@ -21,6 +21,11 @@ export default function configureStore({deps, initialState}) {
     // Browser is ok with relative url. Server and React Native need absolute.
     (process.env.IS_BROWSER ? '' : 'http://localhost:8000');
 
+//
+// const globalStateMiddleware = store => next => action => {
+//   next({ ...action, getState: store.getState });
+// };
+
   const middleware = [
     injectMiddleware({
       ...deps,
@@ -28,6 +33,7 @@ export default function configureStore({deps, initialState}) {
       getUid: () => shortid.generate(),
       now: () => Date.now(),
       validate
+      // globalStateMiddleware
     }),
     promiseMiddleware({
       promiseTypeSuffixes: ['START', 'SUCCESS', 'ERROR']

@@ -11,8 +11,9 @@ import todos from '../todos/reducer';
 import ui from '../ui/reducer';
 import users from '../users/reducer';
 import loans from '../loans/reducer';
+import * as actions from '../loans/actions';
 
-const appReducer = combineReducers({
+const combinedReducers = combineReducers({
   auth,
   device,
   fields,
@@ -22,5 +23,21 @@ const appReducer = combineReducers({
   users,
   loans
 });
+
+const appReducer = function(state, action) {
+  switch (action.type) {
+    case actions.SET_SOMETHING:
+      const {what, where, value} = action.payload;
+      return {
+        ...state,
+        [what]: state[what].setIn(where, value)
+      }
+  }
+
+  return {
+    ...state,
+    ...combinedReducers(state, action)
+  }
+}
 
 export default appReducer;

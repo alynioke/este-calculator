@@ -14,17 +14,20 @@ class Page extends Component {
     loans: React.PropTypes.object,
     calculateExtendLoan: React.PropTypes.func,
     calculateDeleteLoan: React.PropTypes.func,
-    inTotal: React.PropTypes.string
+    inTotal: React.PropTypes.string,
+    setSomething: React.PropTypes.func
   };
 
+
   render() {
-    const {msg} = this.props;
+    const {msg, setSomething} = this.props;
 
     return (
       <div className="todos-page">
         <Helmet title={msg.title}/>
 
         <LoansList {...this.props} />
+        <button className="setSomething" onClick={() => setSomething({what:'loans', where: ['currentLoan', 'days'], value: '87'})}>SET any Record value inside state tree to any value</button>
       </div>
     );
   }

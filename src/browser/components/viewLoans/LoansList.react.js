@@ -14,6 +14,8 @@ class LoansList extends Component {
   };
 
   getAmount(loans, fieldToReduce) {
+    if (typeof loans.first() === 'undefined') return 0;
+
     const amount = loans.size > 1
       ? loans.reduce(function(prev, next) {
         var prev = typeof prev === 'number' ? prev : prev.get(fieldToReduce),
@@ -46,9 +48,9 @@ class LoansList extends Component {
             { loans.size ?
                 loans.map((loan, id) =>
                   <Loan
-                    loan={loan}
                     id={id}
-                    key={id}
+                    loan={loan}
+                    key={loan.get('id')}
                     calculateExtendLoan={calculateExtendLoan}
                     calculateDeleteLoan={calculateDeleteLoan}
                   />)

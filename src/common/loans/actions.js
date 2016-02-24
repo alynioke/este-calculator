@@ -1,49 +1,42 @@
-export const CALCULATE_SET_VALUE = 'CALCULATE_SET_VALUE';
-export const CALCULATE_ADD_LOAN = 'CALCULATE_ADD_LOAN';
-export const CALCULATE_EXTEND_LOAN = 'CALCULATE_EXTEND_LOAN';
-export const CALCULATE_DELETE_LOAN = 'CALCULATE_DELETE_LOAN';
+export const SET_VALUE = 'SET_VALUE';
+export const ADD_LOAN = 'ADD_LOAN';
+export const EXTEND_LOAN = 'EXTEND_LOAN';
+export const DELETE_LOAN = 'DELETE_LOAN';
+export const SET_SOMETHING = 'SET_SOMETHING';
 
 export function calculateSetValue(name, value) {
   return {
-    type: CALCULATE_SET_VALUE,
+    type: SET_VALUE,
     payload: {name, value}
   };
 }
 
 export function calculateAddLoan() {
-  return ({now}) => {
+  return ({now, getUid}) => {
     return {
-      type: CALCULATE_ADD_LOAN,
-      payload: {now}
+      type: ADD_LOAN,
+      payload: {now, getUid}
     };
   };
 }
 
 export function calculateExtendLoan(id) {
   return {
-    type: CALCULATE_EXTEND_LOAN,
+    type: EXTEND_LOAN,
     payload: {id}
   };
 }
 
 export function calculateDeleteLoan(id) {
   return {
-    type: CALCULATE_DELETE_LOAN,
+    type: DELETE_LOAN,
     payload: {id}
   };
 }
 
-//
-// export function setSomething(somewhere, something, value) {
-//   return {
-//     type: CALCULATE_EXTEND_LOAN,
-//     somewhere,
-//     something,
-//     value
-//   };
-// }
-
-
-// setSomething('loans', ['cureentLoan','amount'], 10)
-//
-// setSomething('autn', ['fomrdisabled'], 10)
+export function setSomething(params) {
+  return {
+    type: SET_SOMETHING,
+    payload: params
+  };
+}

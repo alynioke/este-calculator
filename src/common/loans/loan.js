@@ -6,7 +6,8 @@ const Loan = Record({
   interest: null,
   iban: null,
   date: null,
-  returnAmount: null
+  returnAmount: null,
+  id: null
 });
 
 export default Loan;
