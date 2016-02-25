@@ -1,18 +1,12 @@
 import * as actions from './actions';
-import {Record, List} from 'immutable';
+import {Record, Map} from 'immutable';
 import Loan from './loan';
-import RecordFirstLevel from './recordStructure_1';
 import {calculateReturnAmount} from './consts';
 
 const InitialLoansState = Record({
   currentLoan: new Loan,
-  loans: List(),
-
-  recordFiels: new RecordFirstLevel,
-  simpleField: 555
+  loans: Map()
 });
-
-//@todo: several reducers
 
 const initialState = new InitialLoansState;
 
@@ -38,15 +32,17 @@ export default function loansReducer(state = initialState, action) {
 
     case actions.ADD_LOAN: {
       const {now, getUid} = action.payload;
+      const uid = getUid();
       /* I just wanted to use something from the middleware, hence 'now' function */
       /* It's not really needed here */
 
       return state
-        .update('loans', loans => loans.push(
+        .update('loans', loans => loans.set(
+            uid,
             state
               .get('currentLoan')
               .set('date', new Date(now()))
-              .set('id', getUid())
+              .set('id', uid)
             )
         )
         .set('currentLoan', new Loan);
@@ -56,11 +52,11 @@ export default function loansReducer(state = initialState, action) {
       const {id} = action.payload;
 
       return state
-        .update('loans', loans => loans.update(id, function(loan) {
-          const newInterest = loan.get('interest') * 2,
-            newDate = new Date(loan.get('date').setDate(loan.get('date').getDate() + 7)),
-            newReturnAmount = calculateReturnAmount(loan.get('amount'), 8, newInterest),
-            newDays = loan.get('days') + 7;
+        .update('loans', loans => loans.update(id, loan => {
+          const newInterest = loan.get('interest') * 2;
+          const newDate = new Date(loan.get('date').setDate(loan.get('date').getDate() + 7));
+          const newReturnAmount = calculateReturnAmount(loan.get('amount'), 8, newInterest);
+          const newDays = loan.get('days') + 7;
 
           return loan
             .set('days', newDays)
@@ -82,15 +78,3 @@ export default function loansReducer(state = initialState, action) {
 
   return state;
 }
-
-
-
-//
-//
-// in each reducer create a case, inside of whic send data to some function X,
-// which gets initialState, where and value
-// function X will be a function of middleware
-//
-// First - realise this function inside one reducer.
-// Then - create a middleware
-// 3. Create is in the each reducer and action creator....

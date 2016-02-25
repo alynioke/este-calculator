@@ -1,14 +1,14 @@
 import Component from 'react-pure-render/component';
-import React, {PropTypes} from 'react';
+import React, {PropTypes as RPT} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../../../common/loans/actions';
 
 class LoanInputs extends Component {
   static propTypes = {
-    msgAddLoan: PropTypes.object,
-    currentLoan: PropTypes.object.isRequired,
-    calculateSetValue: React.PropTypes.func,
-    calculateAddLoan: React.PropTypes.func
+    msgAddLoan: RPT.object,
+    currentLoan: RPT.object.isRequired,
+    calculateSetValue: RPT.func,
+    calculateAddLoan: RPT.func
   }
 
   constructor(props) {
@@ -86,7 +86,6 @@ class LoanInputs extends Component {
     );
   }
 }
-
 
 export default connect(state => ({
   msgAddLoan: state.intl.msg.addLoan,

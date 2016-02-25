@@ -2,13 +2,13 @@ import './App.scss';
 import Component from 'react-pure-render/component';
 import Header from './Header.react';
 import Helmet from 'react-helmet';
-import React, {PropTypes} from 'react';
+import React, {PropTypes as RPT} from 'react';
 
 export default class App extends Component {
 
   static propTypes = {
-    children: PropTypes.object.isRequired,
-    location: PropTypes.object.isRequired
+    children: RPT.object.isRequired,
+    location: RPT.object.isRequired
   };
 
   render() {
@@ -27,7 +27,7 @@ export default class App extends Component {
           }]}
           titleTemplate="%s - Este.js"
         />
-        <Header  pathname={location.pathname}/>
+        <Header pathname={location.pathname}/>
         {children}
       </div>
     );

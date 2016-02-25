@@ -2,7 +2,7 @@ export const SET_VALUE = 'SET_VALUE';
 export const ADD_LOAN = 'ADD_LOAN';
 export const EXTEND_LOAN = 'EXTEND_LOAN';
 export const DELETE_LOAN = 'DELETE_LOAN';
-export const SET_SOMETHING = 'SET_SOMETHING';
+// export const SET_SOMETHING = 'SET_SOMETHING';
 
 export function calculateSetValue(name, value) {
   return {
@@ -34,9 +34,9 @@ export function calculateDeleteLoan(id) {
   };
 }
 
-export function setSomething(params) {
-  return {
-    type: SET_SOMETHING,
-    payload: params
-  };
-}
+// export function setSomething(params) {
+//   return {
+//     type: SET_SOMETHING,
+//     payload: params
+//   };
+// }

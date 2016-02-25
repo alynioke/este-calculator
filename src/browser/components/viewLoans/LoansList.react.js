@@ -1,39 +1,33 @@
 import Component from 'react-pure-render/component';
-import React, {PropTypes} from 'react';
+import React, {PropTypes as RPT} from 'react';
 import Loan from './Loan.react';
 import './LoansList.scss';
 
 class LoansList extends Component {
 
   static propTypes = {
-    msg: PropTypes.object,
-    loans: PropTypes.object,
-    calculateExtendLoan: PropTypes.func,
-    calculateDeleteLoan: React.PropTypes.func,
-    inTotal: PropTypes.string
+    msg: RPT.object,
+    loans: RPT.object,
+    calculateExtendLoan: RPT.func,
+    calculateDeleteLoan: RPT.func,
+    inTotal: RPT.string
   };
 
   getAmount(loans, fieldToReduce) {
-    if (typeof loans.first() === 'undefined') return 0;
+    const loansArray = Object.keys(loans).map((key) => loans[key]);
 
-    const amount = loans.size > 1
-      ? loans.reduce(function(prev, next) {
-        var prev = typeof prev === 'number' ? prev : prev.get(fieldToReduce),
-          next = typeof next === 'number' ? next : next.get(fieldToReduce);
-        return parseFloat(prev) + parseFloat(next);
-      })
-      : loans.first().get(fieldToReduce);
-
-    return parseFloat(amount).toFixed(2);
+    return loansArray.reduce(
+      (previousValue, currentValue) => previousValue + parseFloat(currentValue[fieldToReduce]),
+      0)
+    .toFixed(2);
   }
 
   render() {
     const {loans, calculateExtendLoan, inTotal, calculateDeleteLoan} = this.props;
-    const totalAmount = this.getAmount(loans, 'amount'),
-      totalReturnAmount = this.getAmount(loans, 'returnAmount');
+    const totalAmount = this.getAmount(loans.toJS(), 'amount'),
+      totalReturnAmount = this.getAmount(loans.toJS(), 'returnAmount');
 
-
-        console.log('RERENDER list');
+    console.log('RERENDER list');
 
     return (
       <div>
@@ -50,9 +44,9 @@ class LoansList extends Component {
           </thead>
           <tbody>
             { loans.size ?
-                loans.map((loan, id) =>
+                loans.map((loan) =>
                   <Loan
-                    id={id}
+                    id={loan.get('id')}
                     loan={loan}
                     key={loan.get('id')}
                     calculateExtendLoan={calculateExtendLoan}

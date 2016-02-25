@@ -2,8 +2,7 @@ import Component from 'react-pure-render/component';
 import React from 'react';
 
 class AnyPage extends Component {
-
-  render() {    
+  render() {
     return (
       <div className="todos-page">
           ANY PAGE

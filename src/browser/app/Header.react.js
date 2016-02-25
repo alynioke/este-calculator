@@ -1,5 +1,5 @@
 import Component from 'react-pure-render/component';
-import React, {PropTypes} from 'react';
+import React, {PropTypes as RPT} from 'react';
 import {Link, IndexLink} from 'react-router';
 import {connect} from 'react-redux';
 import NavLink from './NavLink'
@@ -7,14 +7,13 @@ import NavLink from './NavLink'
 class Header extends Component {
 
   static propTypes = {
-    msg: PropTypes.object.isRequired,
-    pathname: PropTypes.string.isRequired,
-    viewer: PropTypes.object
+    msg: RPT.object.isRequired,
+    pathname: RPT.string.isRequired,
+    viewer: RPT.object
   };
 
   render() {
-    const {msg, viewer} = this.props;
-    const bb = 3;
+    const {msg} = this.props;
 
     return (
       <header>

@@ -1,17 +1,15 @@
 import Component from 'react-pure-render/component';
-import Helmet from 'react-helmet';
-import React, {PropTypes} from 'react';
-import fetch from '../../../common/components/fetch';
+import React, {PropTypes as RPT} from 'react';
 import {connect} from 'react-redux';
-import * as loanActions from '../../../common/loans/actions';
 
 class ViewLoan extends Component {
   static propTypes = {
-    loans: React.PropTypes.object
+    loans: RPT.object,
+    params: RPT.object
   };
 
   render() {
-    const { id } = this.props.params;
+    const {id} = this.props.params;
     const {date, amount, interest, iban, returnAmount} = this.props.loans.toJSON()[id];
 
     return (

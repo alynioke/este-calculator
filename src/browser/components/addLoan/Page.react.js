@@ -1,6 +1,6 @@
 import Component from 'react-pure-render/component';
 import Helmet from 'react-helmet';
-import React, {PropTypes} from 'react';
+import React, {PropTypes as RPT} from 'react';
 import {connect} from 'react-redux';
 import './addLoan.scss';
 import LoanForm from './LoanForm.react';
@@ -8,7 +8,7 @@ import LoanForm from './LoanForm.react';
 class Page extends Component {
 
   static propTypes = {
-    msg: PropTypes.object
+    msg: RPT.object
   };
 
   render() {
@@ -23,7 +23,6 @@ class Page extends Component {
     );
   }
 }
-
 
 export default connect(state => ({
   msg: state.intl.msg.todos

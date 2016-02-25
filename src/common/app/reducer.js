@@ -24,20 +24,20 @@ const combinedReducers = combineReducers({
   loans
 });
 
-const appReducer = function(state, action) {
-  switch (action.type) {
-    case actions.SET_SOMETHING:
-      const {what, where, value} = action.payload;
-      return {
-        ...state,
-        [what]: state[what].setIn(where, value)
-      }
-  }
+export default combinedReducers;
 
-  return {
-    ...state,
-    ...combinedReducers(state, action)
-  }
-}
-
-export default appReducer;
+// const appReducer = function(state, action) {
+//   switch (action.type) {
+//     case actions.SET_SOMETHING:
+//       const {what, where, value} = action.payload;
+//       return {
+//         ...state,
+//         [what]: state[what].setIn(where, value)
+//       }
+//   }
+//
+//   return {
+//     ...combinedReducers(state, action)
+//   }
+// }
+// export default appReducer;
