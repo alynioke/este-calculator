@@ -27,10 +27,7 @@ export default class App extends Component {
           }]}
           titleTemplate="%s - Este.js"
         />
-        <Header
-          // TODO: Use Redux router, then connect location.
-          pathname={location.pathname}
-        />
+        <Header  pathname={location.pathname}/>
         {children}
       </div>
     );

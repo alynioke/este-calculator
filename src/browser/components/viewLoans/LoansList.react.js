@@ -32,7 +32,11 @@ class LoansList extends Component {
     const totalAmount = this.getAmount(loans, 'amount'),
       totalReturnAmount = this.getAmount(loans, 'returnAmount');
 
+
+        console.log('RERENDER list');
+
     return (
+      <div>
         <table className="loansList">
           <thead>
             <tr>
@@ -66,6 +70,7 @@ class LoansList extends Component {
             </tr>
           </tbody>
         </table>
+      </div>
     );
   }
 }

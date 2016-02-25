@@ -27,6 +27,11 @@ class Page extends Component {
         <Helmet title={msg.title}/>
 
         <LoansList {...this.props} />
+
+
+
+        {this.props.children}
+
         <button className="setSomething" onClick={() => setSomething({what:'loans', where: ['currentLoan', 'days'], value: '87'})}>SET any Record value inside state tree to any value</button>
       </div>
     );

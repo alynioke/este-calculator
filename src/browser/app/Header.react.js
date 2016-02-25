@@ -2,6 +2,7 @@ import Component from 'react-pure-render/component';
 import React, {PropTypes} from 'react';
 import {Link, IndexLink} from 'react-router';
 import {connect} from 'react-redux';
+import NavLink from './NavLink'
 
 class Header extends Component {
 
@@ -13,12 +14,20 @@ class Header extends Component {
 
   render() {
     const {msg, viewer} = this.props;
+    const bb = 3;
 
     return (
       <header>
         <ul>
-          <li><IndexLink activeClassName="active" to="/">{msg.addLoan}</IndexLink></li>
-          <li><Link activeClassName="active" to="/view-loans">{msg.viewLoans}</Link></li>
+          <li>
+            <IndexLink activeClassName="active" to="/">{msg.addLoan}</IndexLink>
+          </li>
+          <li>
+            <NavLink to="/view-loans">{msg.viewLoans}</NavLink>
+          </li>
+          <li>
+            <NavLink to="/old-any-page/p1/p2">About</NavLink>
+          </li>
         </ul>
       </header>
     );

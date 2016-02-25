@@ -16,6 +16,7 @@ class Loan extends Component {
   }
 
   render() {
+    console.log('RERENDER loan' + this.props.id);
     const {interest, days, iban, amount, returnAmount} = this.props.loan.toJSON(),
       date = this.props.loan.get('date').toString(),
       id = this.props.id;
